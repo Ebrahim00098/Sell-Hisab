@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=921, user-scalable=no">
+  <title>হিসাব অ্যাপ</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- ✅ নতুন যুক্ত করা Header -->
+  <div class="header">
+    <div class="logo-area">
+      <i class="fas fa-chart-line"></i>
+      প্রডাক্ট সেল হিসাব অ্যাপ 
+    </div>
+    <div class="icon-area">
+      <div class="icon-btn">
+        <i class="fas fa-bell"></i>
+      </div>
+     <div class="icon-btn" id="toggleDark">
+  <i class="fas fa-moon"></i>
+      </div>
+      <div class="icon-btn">
+        <i class="fas fa-cog"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div id="allCards"></div>
+
+    <!-- উপরের কার্ড -->
+    <div class="card1">
+      <div class="tab">
+        <div class="active" id="currentMonth">চলতি মাস</div>
+        <div id="allDataTab">সর্বমোট</div>
+      </div>
+      <div class="row">
+        <div>
+          <div class="green">ক্রয়</div>
+          <div id="totalPurchase">৳০০.০</div>
+        </div>
+        <div>
+          <div class="red">বিক্রয়</div>
+          <div id="totalSale">৳০০</div>
+        </div>
+        <div>
+          <div class="brown">আদায়</div>
+          <div id="totalReceive">৳০০</div>
+        </div>
+        <div>
+          <div class="blue">লাভ</div>
+          <div id="totalProfit">৳০০</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- তথ্য কার্ড -->
+    <div class="card2" id="infoCard">
+      <div class="row">
+        <div>
+          <strong class="green">দিন/তারিখ</strong>
+          <span id="todayDate">২১/০৬/২০২৫</span>
+          <span id="todayDay">শনিবার</span>
+        </div>
+        <div>
+          <strong class="blue">মোট পণ্য</strong>
+          <span id="totalItems">০ টি</span>
+        </div>
+        <div>
+          <strong class="green">মোট ক্রয়</strong>
+          <span id="infoPurchase">৳০০</span>
+        </div>
+        <div>
+          <strong class="red">মোট বিক্রয়</strong>
+          <span id="infoSale">৳০০</span>
+        </div>
+        <div>
+          <strong class="blue">লাভ</strong>
+          <span id="infoProfit">৳০০</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ফর্ম -->
+     <div class="popup-backdrop" id="popupBackdrop"></div>
+
+    <div class="popup" id="popupForm">
+      <div class="input-group">
+        <img src="https://img.icons8.com/ios-filled/50/product.png" alt="পণ্যের নাম">
+        <input type="text" placeholder="পণ্যের নাম" id="productName">
+      </div>
+      <div class="input-group">
+        <img src="https://img.icons8.com/ios-filled/50/sale.png" alt="বিক্রয়">
+        <input type="number" placeholder="বিক্রয় টাকার পরিমাণ" id="saleAmount">
+      </div>
+      <div class="input-group">
+        <img src="https://img.icons8.com/ios-filled/50/purchase-order.png" alt="ক্রয়">
+        <input type="number" placeholder="ক্রয় টাকার পরিমাণ" id="purchaseAmount">
+      </div>
+      <div class="input-group">
+        <img src="https://img.icons8.com/ios-filled/50/money.png" alt="আদায়">
+        <input type="number" placeholder="আদায় টাকার পরিমাণ" id="receivedAmount">
+      </div>
+      <div class="input-group">
+        <img src="https://img.icons8.com/ios-filled/50/money.png" alt="পেমেন্ট">
+        <input type="text" placeholder="পেমেন্ট মাধ্যম (নগদ/বিকাশ)" id="paymentMethod">
+      </div>
+      <div class="input-group">
+        <img src="https://img.icons8.com/ios-filled/50/edit-text.png" alt="বিবরণ">
+        <textarea placeholder="বিবরণ লিখুন" id="description"></textarea>
+      </div>
+      <div class="buttons">
+        <button class="cancel" onclick="clearForm()">বাতিল</button>
+        <button class="submit" onclick="submitForm()">যোগ করুন</button>
+      </div>
+    </div>
+
+    <!-- যোগ বাটন -->
+    <div class="add-button" id="addButton">+</div>
+    <div class="toggle-content" id="toggleContent">
+
+      <!-- তালিকা হেডার -->
+      <div class="product-header">
+        <div>পণ্যের নাম</div>
+        <div>বিক্রয়</div>
+        <div>ক্রয়</div>
+        <div>আদায়</div>
+        <div>বিবরণ</div>
+        <div>অপশন</div>
+      </div>
+
+      <!-- ডাটা এন্ট্রি যুক্ত হবে -->
+      <div id="entriesContainer">
+        <div class="product-entry">
+          <div>উদাহরণ পণ্য</div>
+          <div>৳৫০</div>
+          <div>৳৩০</div>
+          <div>৳২০</div>
+          <div>পরীক্ষামূলক তথ্য</div>
+          <div>✏️ ❌</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
